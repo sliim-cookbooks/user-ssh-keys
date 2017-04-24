@@ -43,6 +43,7 @@ action :create do
   end
 
   template "#{user[:home]}/.ssh/authorized_keys" do
+    cookbook 'user-ssh-keys'
     source 'authorized_keys.erb'
     owner username
     group username
