@@ -10,6 +10,10 @@ attribute :data_bag,
           :kind_of => String,
           :default => 'ssh_keys'
 
+attribute :secret_file,
+          :kind_of => String,
+          :default => ''
+
 attribute :authorized_keys,
           :kind_of => Array,
           :default => []

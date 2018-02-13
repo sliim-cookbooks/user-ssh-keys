@@ -24,6 +24,7 @@ module PMSIpilot
 
         normalized[:databag] = data_bag_proc.call(username)
         normalized[:databag] ||= []
+        normalized[:secret_file] ||= ''
         normalized[:home] = Dir.home(username)
         normalized[:authorized_keys] ||= []
         normalized[:authorized_users] ||= []

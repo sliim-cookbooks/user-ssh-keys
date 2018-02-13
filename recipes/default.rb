@@ -3,6 +3,7 @@ node['user_ssh_keys']['users'].each do |username, user|
     authorized_keys user['authorized_keys']
     authorized_users user['authorized_users']
     data_bag node['user_ssh_keys']['data_bag']
+    secret_file user['secret_file']
     action :create
   end
 end
