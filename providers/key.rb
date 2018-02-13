@@ -10,7 +10,11 @@ action :create do
           :authorized_users => new_resource.authorized_users.dup
       },
       Proc.new do |item|
-        data_bag_item(new_resource.data_bag, item)
+        if new_resource.secret_file.empty?
+          data_bag_item(new_resource.data_bag, item)
+        else
+          data_bag_item(new_resource.data_bag, item, Chef::EncryptedDataBagItem.load_secret(new_resource.secret_file))
+        end
       end
   )
 
@@ -45,6 +49,7 @@ action :create do
   template "#{user[:home]}/.ssh/authorized_keys" do
     cookbook 'user-ssh-keys'
     source 'authorized_keys.erb'
+    cookbook 'user-ssh-keys'
     owner username
     group username
     mode '0600'
