@@ -10,10 +10,10 @@ action :create do
           :authorized_users => new_resource.authorized_users.dup
       },
       Proc.new do |item|
-        if new_resource.secret_file.empty?
-          data_bag_item(new_resource.data_bag, item)
-        else
+        if new_resource.secret_file and ! new_resource.secret_file.empty?
           data_bag_item(new_resource.data_bag, item, Chef::EncryptedDataBagItem.load_secret(new_resource.secret_file))
+        else
+          data_bag_item(new_resource.data_bag, item)
         end
       end
   )
