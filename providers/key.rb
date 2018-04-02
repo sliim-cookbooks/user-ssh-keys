@@ -54,5 +54,6 @@ action :create do
     group username
     mode '0600'
     variables keys: user[:authorized_keys]
+    not_if { user[:authorized_keys].empty? }
   end
 end
