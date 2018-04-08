@@ -1,7 +1,7 @@
 use_inline_resources
 
 action :create do
-  username = new_resource.name
+  username = new_resource.username
 
   user = PMSIpilot::SshKeys::User.normalize!(
       username,
